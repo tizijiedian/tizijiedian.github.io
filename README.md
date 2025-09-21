@@ -1,4 +1,4 @@
-# 梯子节点 | 9月21日19.5M/S|免费Shadowrocket/SSR/V2ray/Clash节点推荐，在线Clash机场梯子购买推荐  更新时间 2025-09-21 10:39:02
+# 梯子节点 | 9月21日22.6M/S|免费Clash/Shadowrocket/SSR/V2ray节点推荐，在线Clash机场梯子购买推荐  更新时间 2025-09-21 21:27:44
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://tizijiedian.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
