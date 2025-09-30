@@ -67,7 +67,7 @@
                 <div class="logo">
                     <figure> 
                         <a href="/">
-                                                        <span>梯子节点</span>
+                                                        <span>梯子节点资源分享</span>
                                                     </a>
                     </figure>
                 </div>
@@ -80,6 +80,8 @@
                         <div class="navbar-collapse collapse clearfix">
                             <ul class="navigation clearfix">
                                                                 <li><a href="/">首页</a></li>
+                                                                <li><a href="/free-nodes/">免费节点</a></li>
+                                                                <li><a href="/free-nodes/">免费节点</a></li>
                                                                 <li><a href="/paid-subscribe/">推荐机场</a></li>
                                                                 <li><a href="/news/">新闻资讯</a></li>
                                                                 <li><a href="/client.htm">客户端</a></li>
@@ -111,7 +113,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-9">
-                                        <input type="hidden" id="share-website-info" data-name="Clash Node官网订阅站" data-url="https://clashnode.github.io">
+                                        <input type="hidden" id="share-website-info" data-name="Clash Node免费节点站" data-url="https://clashnode.github.io">
                 <div class="xcblog-blog-detail xcblog-blog-detail-defined">
                       <p>在当今高度互联的数字时代，网络自由与隐私保护已成为全球网民的核心诉求。无论是学术研究、跨国商务还是日常社交，突破地域限制获取信息的需求日益增长。作为一款开源的网络代理工具，Clash凭借其卓越的性能和灵活的配置，已成为技术爱好者实现科学上网的首选方案。本文将深入解析Clash的安装配置全流程，带您领略现代代理技术的精妙之处。  </p>  <h2>一、Clash：网络自由的钥匙</h2>  <p>Clash并非简单的VPN替代品，而是一个支持多协议转发的智能代理引擎。它采用Go语言编写，具有跨平台、高性能的特点，能够同时处理Shadowsocks、VMess、Trojan等多种代理协议。与传统工具相比，Clash最突出的优势在于其<strong>规则分流系统</strong>——可以根据域名、IP、地理位置等条件智能选择代理路径，实现国内外流量分流，既保障访问速度又节省代理流量。  </p>  <p>技术层面上，Clash采用YAML格式的配置文件，这种人类可读的数据序列化语言，使得复杂的网络规则也能清晰呈现。其核心功能包括：<br /> - 多协议支持（SS/SSR/V2Ray/Trojan）<br /> - 基于规则的智能路由<br /> - 流量统计与延迟测试<br /> - 系统代理自动配置  </p>  <h2>二、前期准备：构建代理基础设施</h2>  <p>在部署Clash之前，需要建立完整的代理生态链。这包括三个关键要素：  </p>  <ol> <li><p><strong>代理服务器获取</strong>  </p>  <ul> <li>自建服务器：推荐使用境外VPS搭建，如AWS Lightsail或Google Cloud的香港/日本节点  </li> <li>订阅服务：选择可靠的机场服务，注意甄别"跑路风险"  </li> <li>协议选择：V2Ray的VMess协议目前抗封锁能力最强  </li> </ul></li> <li><p><strong>客户端选择矩阵</strong><br /> | 平台       | 推荐客户端          | 特色功能                     |<br /> |------------|-------------------|----------------------------|<br /> | Windows    | Clash for Windows | 图形化界面，支持TAP模式      |<br /> | macOS      | ClashX           | 状态栏快捷操作               |<br /> | Android    | Clash for Android | 支持TUN模式（全局代理）       |<br /> | iOS        | Stash            | 基于Network Extension框架   |  </p></li> <li><p><strong>网络知识储备</strong><br /> 理解基础概念：  </p>  <ul> <li>SOCKS5/HTTP代理区别  </li> <li>TLS加密原理  </li> <li>路由表工作机制  </li> </ul></li> </ol>  <h2>三、实战安装：跨平台部署详解</h2>  <h3>Windows系统部署</h3>  <ol> <li>访问GitHub仓库下载最新Release包  </li> <li>解压后运行<code>Clash for Windows.exe</code>  </li> <li>首次运行会自动创建配置目录：<br /> <code>%USERPROFILE%\.config\clash</code>  </li> <li>右键任务栏图标选择「设置」→ 启用「Start with Windows」  </li> </ol>  <h3>macOS优雅安装</h3>  <p>```bash  </p>  <h1>使用Homebrew一键安装  <p>brew install --cask clashx-pro  </p>  <h1>手动安装时需解除Gatekeeper限制  <p>sudo xattr -r -d com.apple.quarantine /Applications/ClashX.app<br /> ```  </p>  <h3>移动端配置要点</h3>  <p>Android设备需注意：<br /> - 开启「绕过本地网络」避免内网设备无法访问<br /> - 启用「分应用代理」实现微信走直连、浏览器走代理  </p>  <p>iOS用户建议：<br /> - 使用TestFlight版本获得最新功能<br /> - 配置「策略组」实现自动节点切换  </p>  <h2>四、配置艺术：YAML文件深度解析</h2>  <p>配置文件是Clash的灵魂所在，下面剖析关键配置段：  </p>  <p>```yaml  </p>  <h1>代理服务器定义  <p>proxies:<br />   - name: "Tokyo-VMess"<br />     type: vmess<br />     server: jp.example.com<br />     port: 443<br />     uuid: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx<br />     alterId: 0<br />     cipher: auto<br />     tls: true<br />     skip-cert-verify: false<br />     network: ws<br />     ws-path: /ray<br />     ws-headers: { Host: jp.example.com }  </p>  <h1>智能分流规则  <p>rules:<br />   - DOMAIN-SUFFIX,google.com,PROXY  # 谷歌服务走代理<br />   - DOMAIN-KEYWORD,netflix,PROXY    # 奈飞相关域名<br />   - IP-CIDR,192.168.1.0/24,DIRECT  # 本地局域网直连<br />   - GEOIP,CN,DIRECT                # 中国IP直连<br />   - MATCH,PROXY                    # 其余流量默认代理<br /> ```  </p>  <p>高级技巧：<br /> - 使用<code>url-test</code>组实现自动选择延迟最低节点<br /> - 通过<code>fallback</code>组配置故障转移机制<br /> - 结合<code>load-balance</code>实现流量负载均衡  </p>  <h2>五、性能调优：提升代理体验</h2>  <ol> <li><p><strong>DNS优化方案</strong><br /> ```yaml<br /> dns:<br />  enable: true<br />  enhanced-mode: redir-host<br />  nameserver:  </p>  <ul> <li>8.8.4.4  </li> <li>tls://dns.google<br /> fallback:  </li> <li>tls://1.1.1.1:853<br /> ```  </li> </ul></li> <li><p><strong>MTU值调整</strong><br /> 对于WireGuard类协议，建议设置：<br /> <code>interface: 1420</code>  </p></li> <li><p><strong>吞吐量监控</strong><br /> 使用内置的流量统计功能：<br /> <code>http://127.0.0.1:9090/ui/#/traffic</code>  </p></li> </ol>  <h2>六、安全防护：隐私保护实践</h2>  <ol> <li><p><strong>IP泄露防护</strong>  </p>  <ul> <li>启用「Fake-IP」模式防止DNS污染  </li> <li>配置<code>always-real-ip</code>避免CDN识别  </li> </ul></li> <li><p><strong>流量混淆</strong><br /> 对于Shadowsocks协议：<br /> <code>yaml   plugin: obfs   plugin-opts:    mode: tls    host: bing.com</code>  </p></li> <li><p><strong>日志管理</strong><br /> 生产环境建议：<br /> <code>log-level: silent   external-controller: 0.0.0.0:9090</code>  </p></li> </ol>  <h2>七、疑难排错指南</h2>  <p><strong>症状1：连接成功但无法上网</strong><br /> - 检查系统时间是否准确（误差需在90秒内）<br /> - 验证防火墙规则：<code>netsh advfirewall show allprofiles</code>  </p>  <p><strong>症状2：YouTube卡顿</strong><br /> - 切换UDP relay模式<br /> - 调整<code>udp: true</code>参数  </p>  <p><strong>症状3：配置文件加载失败</strong><br /> - 使用YAML验证工具检查语法<br /> - 注意缩进必须使用空格而非Tab  </p>  <h2>技术点评：Clash的哲学思考</h2>  <p>Clash代表了代理技术发展的新范式——它既不是简单的流量转发器，也不是封闭的商业VPN。其设计哲学体现在：  </p>  <ol> <li><p><strong>透明性原则</strong><br /> 所有配置完全开放可审计，避免了商业VPN的"黑箱操作"风险  </p></li> <li><p><strong>模块化设计</strong><br /> 将代理协议、路由规则、DNS处理等组件解耦，实现高度可定制  </p></li> <li><p><strong>优雅妥协</strong><br /> 在性能与安全间取得平衡，如允许跳过证书验证但不推荐  </p></li> </ol>  <p>这种设计使得Clash既适合隐私要求严格的记者、研究人员，也能满足普通用户的翻墙需求。随着网络环境日益复杂，Clash这类工具的价值将更加凸显——它们不仅是技术解决方案，更是数字时代的基本人权保障工具。  </p>  <p>掌握Clash的使用，本质上是在学习如何在这个被分割的互联网世界中维护自己的连接自由。每一次成功的配置，都是对网络中立性原则的一次微小捍卫。正如开源社区常说的那句话："May the Clash be with you."（愿Clash与你同在）</p>                 </div>
                 <div class="clearfix"></div>
@@ -127,16 +129,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-148556.htm" title="全面解析 Clash Zico 音源：从入门到精通的完整指南">全面解析 Clash Zico 音源：从入门到精通的完整指南</a></li>
-                        <li class="py-2"><a href="/news/article-149903.htm" title="突破网络藩篱：全面指南教你如何安全下载科学上网工具">突破网络藩篱：全面指南教你如何安全下载科学上网工具</a></li>
-                        <li class="py-2"><a href="/news/article-151697.htm" title="全面精通汉堡云Clash：从入门到精通的完整指南">全面精通汉堡云Clash：从入门到精通的完整指南</a></li>
-                        <li class="py-2"><a href="/news/article-148927.htm" title="精通新版Shadowrocket：从零开始的高效代理配置全攻略">精通新版Shadowrocket：从零开始的高效代理配置全攻略</a></li>
-                        <li class="py-2"><a href="/news/article-152424.htm" title="科学上网背后的千元罚单：法律边界与合规生存指南">科学上网背后的千元罚单：法律边界与合规生存指南</a></li>
-                        <li class="py-2"><a href="/news/article-150614.htm" title="深度解析V2Ray与SSR：如何根据需求选择最适合的隐私代理工具">深度解析V2Ray与SSR：如何根据需求选择最适合的隐私代理工具</a></li>
-                        <li class="py-2"><a href="/news/article-152788.htm" title="突破网络限制：Quantumult解锁TikTok全境畅游终极指南">突破网络限制：Quantumult解锁TikTok全境畅游终极指南</a></li>
-                        <li class="py-2"><a href="/news/article-151336.htm" title="解锁极速网络：V2Ray性能优化全攻略">解锁极速网络：V2Ray性能优化全攻略</a></li>
-                        <li class="py-2"><a href="/news/article-150262.htm" title="手机Shadowrocket节点配置全攻略：从获取到高效使用的实战指南">手机Shadowrocket节点配置全攻略：从获取到高效使用的实战指南</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-9-18-clash-stash.htm" title="梯子节点 | 9月18日21.3M/S|免费V2ray节点/Clash节点/SSR/Shadowrocket节点推荐，在线Clash机场梯子购买推荐">梯子节点 | 9月18日21.3M/S|免费V2ray节点/Clash节点/SSR/Shadowrocket节点推荐，在线Clash机场梯子购买推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-9-15-clash-meta-github.htm" title="梯子节点 | 9月15日18.9M/S|免费V2ray节点/SSR/Clash节点/Shadowrocket节点推荐，在线Clash机场梯子购买推荐">梯子节点 | 9月15日18.9M/S|免费V2ray节点/SSR/Clash节点/Shadowrocket节点推荐，在线Clash机场梯子购买推荐</a></li>
+                        <li class="py-2"><a href="/news/article-153882.htm" title="解决v2rayng自动断开问题的全面指南：原因分析与解决技巧">解决v2rayng自动断开问题的全面指南：原因分析与解决技巧</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-9-17-clash-verge-rev-github.htm" title="梯子节点 | 9月17日21.4M/S|免费Shadowrocket节点/V2ray节点/Clash节点/SSR节点推荐，在线Clash机场梯子购买推荐">梯子节点 | 9月17日21.4M/S|免费Shadowrocket节点/V2ray节点/Clash节点/SSR节点推荐，在线Clash机场梯子购买推荐</a></li>
                         <li class="py-2"><a href="/news/article-153518.htm" title="Clash配置指南2025：如何正确导入并优化在线配置文件，打造丝滑科学上网体验">Clash配置指南2025：如何正确导入并优化在线配置文件，打造丝滑科学上网体验</a></li>
+                        <li class="py-2"><a href="/news/article-150973.htm" title="突破网络限制：Clash代理工具全方位使用指南">突破网络限制：Clash代理工具全方位使用指南</a></li>
+                        <li class="py-2"><a href="/news/article-152788.htm" title="突破网络限制：Quantumult解锁TikTok全境畅游终极指南">突破网络限制：Quantumult解锁TikTok全境畅游终极指南</a></li>
+                        <li class="py-2"><a href="/news/article-150262.htm" title="手机Shadowrocket节点配置全攻略：从获取到高效使用的实战指南">手机Shadowrocket节点配置全攻略：从获取到高效使用的实战指南</a></li>
+                        <li class="py-2"><a href="/news/article-152061.htm" title="梅林挂科学上网软件全攻略：从入门到精通的深度指南">梅林挂科学上网软件全攻略：从入门到精通的深度指南</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-9-22-clash-verge-rev-nodes.htm" title="梯子节点 | 9月22日20.5M/S|免费Shadowrocket节点/V2ray节点/Clash节点/SSR节点推荐，在线Clash机场梯子购买推荐">梯子节点 | 9月22日20.5M/S|免费Shadowrocket节点/V2ray节点/Clash节点/SSR节点推荐，在线Clash机场梯子购买推荐</a></li>
                     </ul>
     </div>
 </div>
@@ -148,7 +150,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">8</span> <a href="/date/2025-09/" title="2025-09 归档">2025-09</a></h4>
+                <h4><span class="badge" style="float: right;">23</span> <a href="/date/2025-09/" title="2025-09 归档">2025-09</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-08/" title="2025-08 归档">2025-08</a></h4>
@@ -167,8 +169,11 @@
             <div class="footer-bottom">
                 <div class="container">
                     <div class="copyright-text text-center">
-                                            <p>
+                                            <p>本站内容仅供学习与技术研究用途，无意传播或倡导任何违反法律法规的行为。在此声明：用户须自行了解所在地法律法规，合法合规使用；因使用不当产生的法律责任，与本站及作者无关；请在使用前仔细阅读本声明，继续使用即视为同意以上条款。</p>
+                    <p>
                                                 <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
                                                 <a href="/paid-subscribe/">推荐机场</a> |
                                                 <a href="/news/">新闻资讯</a> |
                                                 <a href="/client.htm">客户端</a> |
@@ -177,7 +182,7 @@
                         <a href="/privacy.htm">隐私申明</a> |
                         <a href="/sitemap.xml">网站地图</a>
                     </p>
-                        <p>
+                                            <p>
                             <a href="/">梯子节点 订阅中文网</a> 版权所有
                             <br />
                             Powered by WordPress
